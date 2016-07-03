@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        {% load staticfiles %}
+            <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+            <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" />
+            <link rel="stylesheet" type="text/css" href="{% static 'css/common_base.css' %}" />
+        <title>{% block title %}MAC Library{% endblock %}</title>
+    </head>
+    <body>
+        <div id="page_head">
+            <h1>Welcome to MAC Library!!  {{ request.user.first_name }}</h1>
+            {% if logMsg == None %}
+                <h2>This is the {% block pageName %}MAC Library{% endblock %} page</h2>
+            {% else %}
+                <h2>{{ log_msg }}</h2>
+            {% endif %}
+        </div>
+            <script src="{% static 'bootstrap/js/jquery-1.12.3.min.js' %}"></script>
+            <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <div id="page_nav">
+            <div class="text-right" >
+                {% if request.user.first_name == None %}
+                    <a href="/libapp/Register/"><strong>Register Here</strong></a>
+                    <span><strong> | </strong></span>
+                    <a href="/libapp/Login"><strong>Login</strong></a>
+                {% else %}
+                    <a href="/libapp/MyItem"><strong>My Item</strong></a>
+                    <span><strong> | </strong></span>
+                    <a href="/libapp/Logout"><strong>Logout</strong></a>
+                {% endif %}
+            </div>
+            <div >
+                <ul id="menu" class="nav nav-tabs" >
+                    <li class="hbar1 {% block Home %} {% endblock %}" role="presentation"><a href="/">Home</a></li>
+                    <li class="hbar1 {% block About %} {% endblock %}" role="presentation"><a href = "/libapp/About">About</a></li>
+                    <li class="hbar1 {% block Account %} {% endblock %}" role="presentation"><a href = "/libapp/MyAcct">My Account</a></li>
+                    <li class="hbar1 {% block Suggestions %} {% endblock %}" role="presentation"><a href = "/libapp/Suggestions">Suggestions</a></li>
+                    <li class="hbar1 {% block Register %} {% endblock %}" role="presentation"><a href = "/libapp/Register">Register</a></li>
+                    <li class="hbar1 {% block SearchLib %} {% endblock %}" role="presentation"><a href = "/libappSearchLib">Search</a></li>
+                </ul>
+                </div>
+        </div>
+        <div id="page_content">
+            {% block content %}
+            <div >Welcome to the MAC Library!!</div>
+            {% endblock %}
+        </div>
+        <div id="page_bottom">
+            {% include 'libapp/Bottom.html' %}
+        </div>
+    </body>
+</html>

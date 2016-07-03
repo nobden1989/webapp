@@ -1,0 +1,30 @@
+{% extends "libapp/MainBase.html" %}
+
+{% block title %}MAC Library - Available DVD{% endblock %}
+
+{% block pageName %}available DVD{% endblock %}
+
+{% block content %}
+    <br/>
+    <a href="/"> Back to Homepage</a>
+    <hr/>
+    <div id="links-div">
+    <table class="table table-striped">
+         <thead>
+            <tr>
+                <th>Title</th>
+                <th>Published Year</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for dvd in dvd_list %}
+                    <tr>
+                        <th><a href="/libapp/Details/{{ dvd.id }}">{{ dvd }}</a></th>
+                        <th>{{ dvd.pub_year }}</th>
+                    </tr>
+            {% empty %}
+            {% endfor %}
+            </tbody>
+    </table>
+    </div>
+{% endblock %}

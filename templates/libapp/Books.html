@@ -1,0 +1,30 @@
+{% extends "libapp/MainBase.html" %}
+
+{% block title %}MAC Library - Available Books{% endblock %}
+
+{% block pageName %}available books{% endblock %}
+
+{% block content %}
+    <br/>
+    <a href="/"> Back to Homepage</a>
+    <hr/>
+    <div id="links-div">
+      <table class="table table-striped">
+         <thead>
+            <tr>
+                <th>title</th>
+                <th>public year</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in book_list %}
+                    <tr>
+                        <th><a href="/libapp/Details/{{ book.id }}">{{ book }}</a></th>
+                        <th>{{ book.pub_year }}</th>
+                    </tr>
+            {% empty %}
+            {% endfor %}
+            </tbody>
+    </table>
+    </div>
+{% endblock %}

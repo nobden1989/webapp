@@ -1,0 +1,27 @@
+{% extends "libapp/MainBase.html" %}
+
+{% load bootstrap %}
+
+{% block title %}MAC Library - Register{% endblock %}
+
+{% block pageName %}register{% endblock %}
+
+{% block Register %}active{% endblock %}
+
+{% block content %}
+    <br/>
+    <a href="/"> Back to Homepage</a>
+    <hr/>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-5">
+            <form class="form-horizontal" enctype="multipart/form-data" action="/libapp/Register/" method="post">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+                <p class="form-actions">
+                    <input type="submit" value="Register" class="btn btn-primary">
+                    <input type="cancel" value="Cancel" class="btn btn-primary">
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}
